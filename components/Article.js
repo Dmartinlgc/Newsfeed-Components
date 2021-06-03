@@ -86,6 +86,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Thing to do at code camp',
+    date: 'Jan 1st, 2021',
+    firstParagraph:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (inje',  
+
+    secondParagraph: `At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.`,
+
+    thirdParagraph: `At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.`
   }
 ];
 
@@ -114,3 +123,56 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+function articleMaker(article) {
+
+  
+
+ const artcleDiv = document.querySelector('.articles')
+console.log(article)
+ const articleEl = document.createElement('div')
+ articleEl.className = "article"
+
+const title = document.createElement('h2')
+title.innerText = article.title
+articleEl.appendChild(title)
+ 
+const date = document.createElement('p')
+ date.className = "date"
+ date.innerText = article.date
+ articleEl.appendChild(date)
+ 
+
+
+ const pArray = [article.firstParagraph, article.secondParagraph, article.thirdParagraph]
+    pArray.forEach(p => {
+    const pEl = document.createElement('p')
+    pEl.innerText = p
+   articleEl.appendChild(pEl)
+ })
+
+ 
+ const expand = document.createElement('span')
+  expand.className ="expandButton"
+  expand.innerText = '+'
+  articleEl.appendChild(expand)
+  expand.addEventListener('click',(event) =>{
+   articleEl.classList.toggle('article-open')
+  })
+
+ 
+  
+ return articleEl
+
+}
+
+
+
+data.forEach(article =>{
+  const artcleDiv = document.querySelector(".articles")
+  const articleEl = articleMaker(article) 
+  artcleDiv.appendChild(articleEl)
+  
+})
+
+
+
